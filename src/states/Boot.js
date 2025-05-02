@@ -1,12 +1,22 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 import config from '../config';
+import globals from './globals';
+import { clone } from 'lodash';
 
 export default class extends Phaser.State {
   init() {
-    this.stage.backgroundColor = '#EDEEC9'
+    this.stage.backgroundColor = 'ffffff'
     this.fontsReady = false
     this.fontsLoaded = this.fontsLoaded.bind(this)
+  }
+
+  create () {
+    this.initGlobalVariables()
+  }
+
+  initGlobalVariables () {
+    this.game.global = clone(globals)
   }
 
   preload() {
