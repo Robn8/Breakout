@@ -15,6 +15,8 @@ export default class extends Phaser.State {
   preload() { }
 
   create() {
+    this.game.physics.arcade.checkCollision.down = false
+
     this.setUpText()
     this.setUpBricks()
     this.setUpPaddle()
@@ -37,6 +39,16 @@ export default class extends Phaser.State {
   setUpBall () {
     this.ball = new Ball(this.game)
     this.game.add.existing(this.ball)
+
+    this.ball.events.onOutOfBounds.add(this.ballLost, this)
+
+    this.putBallOnPaddle()
+  }
+
+  ballLost () {
+    --this.game.global.lives
+
+    this.livesText.text = `Lives: ${this.game.global.lives}`
 
     this.putBallOnPaddle()
   }
@@ -62,8 +74,8 @@ export default class extends Phaser.State {
   }
 
   generateBricks (bricksGroup) {
-    let rows = 1
-    let columns = 1
+    let rows = 5
+    let columns = 15
     let xOffset = 50
     let yOffset = 45
     let brick
