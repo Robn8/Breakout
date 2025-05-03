@@ -1,5 +1,6 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
+import Brick from '../prefabs/Brick'
 
 export default class extends Phaser.State {
   init() { }
@@ -7,6 +8,39 @@ export default class extends Phaser.State {
 
   create() {
     this.setUpText()
+    this.setUpBricks()
+  }
+
+  setUpBricks () {
+    this.bricks = this.game.add.group()
+    this.generateBricks(this.bricks)
+  }
+
+  generateBricks (bricksGroup) {
+    let rows = 5
+    let columns = 15
+    let xOffset = 50
+    let yOffset = 45
+    let brick
+
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < columns; x++) {
+        brick = new Brick(
+          this.game,
+          x * xOffset,
+          y * yOffset
+        )
+
+        bricksGroup.add(brick)
+      }
+    }
+
+    let brickGroupWidth = ((xOffset * columns) -(xOffset - brick.width)) / 2
+
+    bricksGroup.position.setTo(
+      this.game.world.centerX - brickGroupWidth,
+      this.game.world.centerY - 250
+    )
   }
 
   setUpText () {
