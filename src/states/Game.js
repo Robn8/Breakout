@@ -62,8 +62,8 @@ export default class extends Phaser.State {
   }
 
   generateBricks (bricksGroup) {
-    let rows = 5
-    let columns = 15
+    let rows = 1
+    let columns = 1
     let xOffset = 50
     let yOffset = 45
     let brick
@@ -134,6 +134,16 @@ export default class extends Phaser.State {
 
     this.game.global.score += 10
     this.scoreText.text = `Score: ${this.game.global.score}`
+
+    if (this.bricks.countLiving() > 0) {
+      return
+    }
+
+    this.game.global.level += 1
+    this.levelText.text = `Level: ${this.game.global.level}`
+
+    this.putBallOnPaddle()
+    this.generateBricks(this.bricks)
   }
 
   ballHitPaddle (ball, paddle) {
