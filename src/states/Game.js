@@ -129,8 +129,8 @@ export default class extends Phaser.State {
     )
   }
 
-  ballHitBrick () {
-
+  ballHitBrick (ball, brick) {
+    brick.kill()
   }
 
   ballHitPaddle (ball, paddle) {
