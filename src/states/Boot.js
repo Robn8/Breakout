@@ -13,6 +13,13 @@ export default class extends Phaser.State {
 
   create () {
     this.initGlobalVariables()
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
+    this.scale.pageAlignHorizontally = true
+    this.scale.pageAlignVertically = true
+
+    this.scale.setMinMax(320, 480, window.innerWidth, window.innerHeight)
+
+    this.state.start('Splash')
   }
 
   initGlobalVariables () {
