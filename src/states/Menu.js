@@ -10,7 +10,7 @@ export default class extends Phaser.State {
     let centerX = this.game.width * 0.5
   
     let text = this.add.text(
-      centerX, this.game.height * 0.4,
+      centerX, this.game.height * 0.2,
       `Breakout!\n\nClick New Game to Begin`,
       {
         font: '24px Arial',
@@ -22,7 +22,7 @@ export default class extends Phaser.State {
   
     // Main "New Game" button
     let newGameButton = this.add.button(
-      centerX, this.game.height * 0.57,
+      centerX, this.game.height * 0.4,
       'restartbtn',
       this.restartGame,
       this
@@ -32,7 +32,7 @@ export default class extends Phaser.State {
   
     // "On mobile?" text
     let mobileText = this.add.text(
-      centerX, this.game.height * 0.72,
+      centerX, this.game.height * 0.6,
       'On mobile? Click here:',
       {
         font: '18px Arial',
@@ -44,7 +44,7 @@ export default class extends Phaser.State {
   
     // Mobile game button
     let mobileGameButton = this.add.button(
-        centerX, this.game.height * 0.85,
+        centerX, this.game.height * 0.75,
         'restartbtn',
         this.mobileGame,
         this
