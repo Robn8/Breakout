@@ -32,6 +32,11 @@ class Game extends Phaser.Game {
 
 window.game = new Game()
 
+window.addEventListener('resize', () => {
+  window.game.scale.setGameSize(window.innerWidth, window.innerHeight)
+})
+
+
 if (window.cordova) {
   var app = {
     initialize: function () {
