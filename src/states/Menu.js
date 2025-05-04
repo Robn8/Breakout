@@ -7,8 +7,10 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
+    let centerX = this.game.width * 0.5
+  
     let text = this.add.text(
-      this.game.width * 0.5, this.game.height * 0.4,
+      centerX, this.game.height * 0.4,
       `Breakout!\n\nClick New Game to Begin`,
       {
         font: '24px Arial',
@@ -18,17 +20,39 @@ export default class extends Phaser.State {
     )
     text.anchor.set(0.5)
   
-    // Use the preloaded image as a button
-    let button = this.add.button(
-      this.game.width * 0.5, this.game.height * 0.6,
+    // Main "New Game" button
+    let newGameButton = this.add.button(
+      centerX, this.game.height * 0.57,
       'restartbtn',
       this.restartGame,
       this
     )
-    button.anchor.set(0.5)
-
-    button.scale.setTo(0.25) 
+    newGameButton.anchor.set(0.5)
+    newGameButton.scale.setTo(0.25)
+  
+    // "On mobile?" text
+    let mobileText = this.add.text(
+      centerX, this.game.height * 0.72,
+      'On mobile? Click here:',
+      {
+        font: '18px Arial',
+        fill: '#000',
+        align: 'center'
+      }
+    )
+    mobileText.anchor.set(0.5)
+  
+    // Mobile game button
+    let mobileGameButton = this.add.button(
+        centerX, this.game.height * 0.85,
+        'restartbtn',
+        this.mobileGame,
+        this
+      )
+      mobileGameButton.anchor.set(0.5)
+      mobileGameButton.scale.setTo(0.25)
   }
+  
 
   resetGlobalVariables () {
     this.game.global = clone(globals)
@@ -37,5 +61,10 @@ export default class extends Phaser.State {
   restartGame () {
     this.resetGlobalVariables()
     this.game.state.start('Game')
+  }
+
+  mobileGame () {
+    this.resetGlobalVariables()
+    this.game.state.start('Mobile')
   }
 }
