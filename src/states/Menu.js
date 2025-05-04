@@ -1,7 +1,6 @@
 import Phaser from 'phaser'
 import { clone } from 'lodash'
-import globals from './globals/index'
-
+import globals from './globals'
 
 export default class extends Phaser.State {
   init () {}
@@ -10,7 +9,7 @@ export default class extends Phaser.State {
   create () {
     let text = this.add.text(
       this.game.width * 0.5, this.game.height * 0.4,
-      `Game Over\n\nYou reached level ${this.game.global.level} with score ${this.game.global.score}`,
+      `Breakout!\n\nClick New Game to Begin`,
       {
         font: '24px Arial',
         fill: '#000',
